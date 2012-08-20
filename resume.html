@@ -1,0 +1,477 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title>
+    
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+    <link href="css/impress-demo2.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<body class="impress-not-supported">
+<!--
+Веб-архитектор, PHP/Python-программист.
+
+Опыт проектирования и разработки web-приложений более 6ти лет.
+
+С февраля 2011 руковожу командой из 8ми программистов в должности заместитель начальника отдела веб-разработки в «Связной».
+
+PHP - версии 5.3, 5.4, 5.5 (trunk - тоже посматриваю). ООП, Паттерны, TDD, не стандартные решения.
+
+Похоронил 2 собственных фреймворка. С января 2009 начал использовать Limb Framework. За это время сделал в репозиторий фреймворка около 30 коммитов. C декабря 2009 по февраль 2011 работал с Symfony/Doctrine, однако продолжаю думать, что Limb — лучший!
+
+Однако Limb имеет очень маленькое сообщество. Запасным вариантом у меня Yii!
+
+Опыт использования шаблонных движков и различных CMS/Framework: Symfony, Limb Framework, шаблонизатор {{macro}}. Опыт написания своих тегов для Macro, некоторые из которых добавлены в умолчательную поставку.
+
+SQLite - Еще помню, где лежат грабли! Работал с SQLite из PHP. Работал с SQLite из JavaScript (WebKit). Работал с SQLite из Python.
+
+MySQL - сборка, настройка использование. С оптимизацией запросов знаком. Репликацию использовал, но в кишки не лез. О преимуществах InnoDB знаю, о недостатках - почти нет.
+
+PostgreSQL - использовал на одном из проектов.
+
+HTML5,CSS3,JavaScript - обожаю эти чудесные вещи, но верстать не люблю.
+
+ JavaScript - знаком, близко. Windows Script Host + WMI (Писал инсталляторы, админил Windows — набил шишки от разбросанных в этом месте граблей ), скриптинг на веб-страницах, AJAX, ExtJS, Prototype, jQuery (отдаю предпочтение), написание плагинов для jQuery, расширения для Firefox, игрался небольшими приложениями на XULRunner, делал проект специально для WebKit, игрался с встраиванием WebKit в приложения на PyQt4.
+
+VBA - имел опыт программирования приложений под Excel.
+
+Python - баловался с PyQT4. Сделал небольшой проект на Django. Немного работал с PyXMPP. Интересовался PyGame. Последнее время использую Python для создания консольных инструментов, коих у меня уже накопилось немного. Игрался с Threading, pickle, httplib2, urllib2, BeautifulSoup и т.п. Так же на Python написан паук (и остальные кишки) для POISQ.COM - поисковик по сайтам приднестровье
+
+RabbitMQ - отличный инструмент для разделения работы между отдельными процессами. Использовал в паре проектов, где требовалось обрабатывать много данных в фоне.
+
+Sphinx Search - использовал на одном из проектов. Считаю, что это лучший инструмент для организации полнотекстового поиска.
+
+Apache Luciene/Solr - использовал на одном из проектов. Осталось не очень хорошее впечатление.
+
+bash,awk,sed,grep,find и т.д. - жить без них не могу.
+
+Linux  - с 2005 года является моей основной операционной системой. Использую в основном Debian / Ubuntu. Настраивал XEN-виртуализацию на CentOS/SuSe/Debian. Администрировал сервера под разные задачи: web, контроль версий, файлопомойки, шлюз в интернет, сервер синхронизации данных. Восстанавливал потерянные данные на ReiserFS, NTFS и  vfat.
+
+FreeBSD - использовал как шлюз в интернет для небольшого офиса: pf, squid, free-sa, apache.
+
+Subversion - пользовался около 2.5 лет. Настраивал SVN-сервера в связке с Apache.
+
+Mercurial - использую в повседневной работе и обучаю коллег. Настраивал сервера в связке с nginx.
+
+Git - использую редко, потому опыт достаточно скромный.
+
+Анлийский язык: читаю, веду переписку. Могу слушать доклады технической тематики, однако для того чтобы говорить не хватает практики.
+
+Способен принимать нестандартные решения для достижения цели.
+
+Знаю как описать и упорядочить бизнес-процессы.
+
+Имею опыт управления отделом программистов.
+-->
+
+
+<div class="fallback-message">
+    <p>Ваш браузер <b>не поддерживает современную функциональность</b>, необходимую для просмотра слайдов.</p>
+    <p>Пожалуйста, используйте одну из последних версий браузеров <b>Chrome</b>, <b>Safari</b> или <b>Firefox</b>.</p>
+</div>
+
+<div id="impress">
+ <div class="step" data-rotate="340" data-scale="200">
+        <p class="intro"> Для просмотра презентации используйте клавиши «Влево» и «Вправо» или клавишу «Пробел». Так же работает клик мышкой по экрану.<p>
+ </div>   
+ <div class="step slide" data-rotate="105" data-scale="290">
+        <h1 class="name">Антонов Максим Владимирович</h1>        
+        <h3 class="name">Резюме</h3>
+ </div>
+ <div class="step slide">
+ <q>Веб-архитектор, PHP/Python/JavaScript-программист.</q>
+ </div>
+ <div class="step slide" data-rotate="0" data-scale="60" >
+        <q>Для начала давайте обозначим технологии, которыми я владею в совершенстве.</q>
+    </div>
+
+    <div class="step " data-rotate="30" data-scale="55" >
+        <h1 class="tech">
+        PHP
+        </h1>
+    </div>
+
+    <div class="step slide" data-rotate="30" data-scale="55" >
+        <h2>5.3/5.4</h2>
+        <p>Похоронил 2 собственных фреймворка.</p>
+        <p>С января 2009 начал использовать Limb Framework.</p>
+        <p>За год сделал в репозиторий фреймворка около 30 коммитов</p>
+        <p>C декабря 2009 по февраль 2011 работал с Symfony/Doctrine</p>
+		<h3>Доводилось работать с:</h3>
+		<ul>
+		<li>Yii</li>
+		<li>Zend</li>
+		</ul>
+        <p>Имеется опыт написания своих тегов для шаблонизатора Macro (Limb3 Framework)</p>
+        <p>OpenSource инструмент для версионирования структуры БД MySQL <a href="https://bitbucket.org/idler/mmp">https://bitbucket.org/idler/mmp</a></p>
+    </div>
+
+    <div class="step " data-rotate="40" data-scale="55" >
+        <h1 class="tech">
+        MySQL
+        </h1>
+    </div>
+
+    <div class="step " data-rotate="50" data-scale="55" >
+        <h1 class="tech">
+        HTML5
+        </h1>
+    </div>
+
+    <div class="step " data-rotate="60" data-scale="55" >
+        <h1 class="tech">
+        CSS3
+        </h1>
+    </div>
+
+    <div class="step " data-rotate="70" data-scale="55" >
+        <h1 class="tech">	
+        JavaScript
+        </h1> 
+        <ul>
+        <li>JQuery</li>
+        <li>Prototype</li>
+        <li>написание плагинов для jQuery</li>
+        <li>Написание расширений для Firefox</li>
+        <li>Расширения для Chrome</li>
+        <li>ExtJS  2.0</li>
+        </ul>
+    </div>
+
+    <div class="step " data-rotate="80" data-scale="55" >
+        <h1 class="tech">	
+        Sphinx
+        </h1>
+    </div>
+    <div class="step " data-rotate="90" data-scale="55" >
+        <h1 class="tech">	
+        RabbitMQ
+        </h1>
+    </div>
+
+    <div class="step " data-rotate="100" data-scale="55" >
+        <h1 class="tech">
+        Python
+        </h1>
+       
+    </div>
+    <div class="step slide" data-rotate="100" data-scale="55">
+               <p>Мне очень нравится Python, но мне не доводилось использовать его профессионально.</p>
+        <p>Пока я использовал его только для личных целей</p>
+        <ul>
+        <li>Twitter-боты</li>
+        <li>Jabber-боты</li>
+        <li>Небольшие приложения на PyQT4</li>
+        <li>Пара небольших проектов на <b>Django</b></li>
+        <li>Работа с <b>RabbitMQ</b></li>
+        <li>Консольный скриптинг</li>
+        </ul>
+    </div>
+    
+     <div class="step " data-rotate="110" data-scale="55" >
+        <h1 class="tech">	
+        bash,awk,sed,grep,find и т.д.
+        </h1>
+        <p>Не представляю, как без них можно жить!</p>
+    </div>
+    
+    
+     <div class="step " data-rotate="120" data-scale="55" >
+        <h1 class="tech">	
+        Linux
+        </h1>
+        <p style="font-size: 50%">с 2005 года является моей основной операционной системой. Использую в основном Debian / Ubuntu.</p>
+        <p style="font-size: 50%">Настраивал XEN-виртуализацию на CentOS/SuSe/Debian.</p>
+        <p style="font-size: 50%">Администрировал сервера под разные задачи: web, контроль версий, файлопомойки, шлюз в интернет, сервер синхронизации данных.</p>
+        <p style="font-size: 50%">Восстанавливал потерянные данные на ReiserFS, NTFS и  vfat.</p>
+    </div>
+    
+    
+    
+    
+     <div class="step " data-rotate="130" data-scale="55" >
+        <h1 class="tech">	
+        CVS, Subversion, Mercurial, Git
+        </h1>
+        <p>Успел поработать достаточно долго с каждой из систем. Логично, что уважаю Mercurial и влюблен в Git</p>
+    </div>
+    
+    
+     <div class="step " data-rotate="140" data-scale="55" >
+        <h1 class="tech">	
+        Apache/Nginx
+        </h1>
+    </div>
+    
+    
+    
+    
+    
+    
+ <div class="step slide" data-rotate="-60" data-scale="10" >
+        <q>Теперь технологии, которые я использую не так часто.</q>
+    </div>
+    
+     <div class="step " data-rotate="-50" data-scale="75" >
+        <h1 class="tech">	
+        Memcached
+        </h1>
+    </div>
+    
+     <div class="step " data-rotate="-40" data-scale="75" >
+        <h1 class="tech">	
+        SOAP
+        </h1>
+    </div>
+    
+    <div class="step " data-rotate="-30" data-scale="75" >
+        <h1 class="tech">	
+        Apache Luciene/Solr
+        </h1>
+    </div>
+    
+     <div class="step " data-rotate="-20" data-scale="75" >
+        <h1 class="tech">	
+        Couch DB
+        </h1>
+    </div>
+    
+     <div class="step " data-rotate="-10" data-scale="75" >
+        <h1 class="tech">	
+        SQLite, PostgreSQL
+        </h1>
+        <p>Так сложилось, что в большинстве проектов я использовал <b>MySQL</b>, однако с этими СУБД мне тоже доводилось работать.
+    </div>
+    
+     <div class="step " data-rotate="0" data-scale="75" >
+        <h1 class="tech">	
+        C / C++
+        </h1>
+        <p>Великий и могучий «Си»! Куда же без него.<p>
+        <p>Имею представление о динамическом распределении памяти</p>
+        <p>Пробовал писать расширения для PHP</p>
+        <p>Правил OpenSource-анализатор логов</p>
+        <p>Больше читал, чем писал</p>
+    </div>
+     <div class="step " data-rotate="10" data-scale="75" >
+        <h1 class="tech">	
+        VBA (Excel,Access)
+        </h1>
+    </div>
+   
+   
+   
+   
+   
+       
+ <div class="step slide" data-rotate="-60" data-scale="10" >
+        <q>На десерт: технологии, с которыми приходилось сталкиваться издалека, без написания чего-то собственными руками</q>
+</div>
+     <div class="step " data-rotate="-50" data-scale="75" >
+        <h1 class="tech">	
+       1С Предприятие
+        </h1>
+    </div>
+   
+
+     <div class="step " data-rotate="-40" data-scale="75" >
+        <h1 class="tech">	
+       1С Битрикс
+        </h1>
+    </div>
+   
+
+     <div class="step " data-rotate="-30" data-scale="75" >
+        <h1 class="tech">	
+         Java
+        </h1>
+    </div>
+   
+
+     <div class="step " data-rotate="-20" data-scale="75" >
+        <h1 class="tech">	
+       Flash
+        </h1>
+    </div>
+   
+
+    <div class="step slide" data-rotate="0"  data-x="0" data-y="0">
+       <q>Хронология работы в области</p>
+    </div>
+
+
+  
+    <div class="step slide" data-rotate="0"  data-x="0" data-y="500">
+       <q>Хронология работы в области</p>
+    </div>
+
+
+  
+    <div class="step slide" data-rotate="0"  data-x="0" data-y="1000">
+       <q>Хронология работы в области</p>
+    </div>
+
+
+  
+    <div class="step slide" data-rotate="0"  data-x="0" data-y="1500">
+       <q>Хронология работы в области</p>
+    </div>
+
+
+  
+    <div class="step slide" data-rotate="0"  data-x="0" data-y="2000">
+       <q>Хронология работы в области</p>
+    </div>
+
+
+  
+    <div class="step slide" data-rotate="0"  data-x="0" data-y="2500">
+       <q>Хронология работы в области</p>
+    </div>
+
+
+  
+    <div class="step slide" data-rotate="0"  data-x="0" data-y="3000">
+       <q>Хронология работы в области</p>
+    </div>
+
+
+  
+   
+
+</div>
+
+<!--
+    
+    Hint is not related to impress.js in any way.
+    
+    But it can show you how to use impress.js features in creative way.
+    
+    When the presentation step is shown (selected) its element gets the class of "active" and the body element
+    gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
+    so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
+    the id of `bored`) is active, body element gets a class of `impress-on-bored`.
+    
+    This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
+    the first step of presentation is visible for a couple of seconds.
+    
+    ...
+    
+    And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
+    It's just a quick and dirty workaround to get different hint text for touch devices.
+    In a real world it should be at least placed in separate JS file ... and the touch content should be
+    probably just hidden somewhere in HTML - not hard-coded in the script.
+    
+    Just sayin' ;)
+    
+-->
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div>
+<script>
+
+
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+<!--
+    
+    Last, but not least.
+    
+    To make all described above really work, you need to include impress.js in the page.
+    I strongly encourage to minify it first.
+    
+    In here I just include full source of the script to make it more readable.
+    
+    You also need to call a `impress().init()` function to initialize impress.js presentation.
+    And you should do it in the end of your document. Not only because it's a good practice, but also
+    because it should be done when the whole document is ready.
+    Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
+    
+-->
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+<!--
+    
+    The `impress()` function also gives you access to the API that controls the presentation.
+    
+    Just store the result of the call:
+    
+        var api = impress();
+    
+    and you will get three functions you can call:
+    
+        `api.init()` - initializes the presentation,
+        `api.next()` - moves to next step of the presentation,
+        `api.prev()` - moves to previous step of the presentation,
+        `api.goto( idx | id | element, [duration] )` - moves the presentation to the step given by its index number
+                id or the DOM element; second parameter can be used to define duration of the transition in ms,
+                but it's optional - if not provided default transition duration for the presentation will be used.
+    
+    You can also simply call `impress()` again to get the API, so `impress().next()` is also allowed.
+    Don't worry, it wont initialize the presentation again.
+    
+    For some example uses of this API check the last part of the source of impress.js where the API
+    is used in event handlers.
+    
+-->
+
+</body>
+</html>
+
+<!--
+    
+    Now you know more or less everything you need to build your first impress.js presentation, but before
+    you start...
+    
+    Oh, you've already cloned the code from GitHub?
+    
+    You have it open in text editor?
+    
+    Stop right there!
+    
+    That's not how you create awesome presentations. This is only a code. Implementation of the idea that
+    first needs to grow in your mind.
+    
+    So if you want to build great presentation take a pencil and piece of paper. And turn off the computer.
+    
+    Sketch, draw and write. Brainstorm your ideas on a paper. Try to build a mind-map of what you'd like
+    to present. It will get you closer and closer to the layout you'll build later with impress.js.
+    
+    Get back to the code only when you have your presentation ready on a paper. It doesn't make sense to do
+    it earlier, because you'll only waste your time fighting with positioning of useless points.
+    
+    If you think I'm crazy, please put your hands on a book called "Presentation Zen". It's all about 
+    creating awesome and engaging presentations.
+    
+    Think about it. 'Cause impress.js may not help you, if you have nothing interesting to say.
+    
+-->
+
+<!--
+    
+    Are you still reading this?
+    
+    For real?
+    
+    I'm impressed! Feel free to let me know that you got that far (I'm @bartaz on Twitter), 'cause I'd like
+    to congratulate you personally :)
+    
+    But you don't have to do it now. Take my advice and take some time off. Make yourself a cup of coffee, tea,
+    or anything you like to drink. And raise a glass for me ;)
+    
+    Cheers!
+    
+-->
+
